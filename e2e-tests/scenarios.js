@@ -5,20 +5,20 @@
 describe('my app', function() {
 
 
-  it('should automatically redirect to /forecast when location hash/fragment is empty', function() {
+  it('should automatically redirect to /weather when location hash/fragment is empty', function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/forecast");
+    expect(browser.getLocationAbsUrl()).toMatch("/weather");
   });
 
 
-  describe('forecast', function() {
+  describe('weather', function() {
 
     beforeEach(function() {
-      browser.get('index.html#!/forecast');
+      browser.get('index.html#!/weather');
     });
 
 
-    it('should render forecast when user navigates to /forecast', function() {
+    it('should render weather when user navigates to /weather', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/partial for view 1/);
     });
