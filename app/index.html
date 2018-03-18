@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>WeatherApp</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -41,7 +41,8 @@
     <div class="light-bg">
       <div class="container">
         <h5 class="right">Designed and coded by Yue Zhang</h5>
-        <div class="right">weatherApp: v<span app-version></span></div>
+        <!-- <div class="right">weatherApp: v<span app-version></span></div> -->
+        <div class ="right"><img ng-src = "http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png"/></div>
       </div>
     </div>
   </footer>
@@ -50,6 +51,7 @@
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="app.js"></script>
   <script src="weather/controller.js"></script>

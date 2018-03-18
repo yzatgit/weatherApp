@@ -94,3 +94,9 @@ select option {
   border-color:#507dbc;
   color:#fff;
 }
+
+/* img styles */
+.big-img {
+  display: block;
+  margin: 25px auto;
+}

@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 angular.module('weatherApp', [
   'ngRoute',
-  'weatherApp.weather',
+  'weatherApp.controller',
+  'weatherApp.service',
   'weatherApp.view2',
   'weatherApp.version'
 ]).

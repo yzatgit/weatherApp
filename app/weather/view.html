@@ -5,8 +5,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h4>Please choose a city to find out the local weather</h4>
-				<select class="form-control">
-					<option ng-repeat="city in locations" ng>{{city}}</option>
+				<select class="form-control" ng-change = "changeLocation()" ng-model = "location">
+					<option ng-repeat="location in locations" >{{location.city}},{{location.state}}</option>
 				</select>
 			</div>
 		</div>
@@ -18,41 +18,54 @@
 			<div class="col-md-12">
 					<div class="panel panel-primary">
 							<div class="panel-heading">
-									<h3 class="panel-title">Weather Today</h3>
+									<h3 class="panel-title">weather today in {{weatherRes.current_observation.display_location.full}}</h3>
 							</div>
 							<div class="panel-body">
+								<div class="col-md-3">
+									<img  alt= "this is an iamge" class="big-img" ng-src="https://icons.wxug.com/i/c/j/{{weatherRes.current_observation.icon}}.gif"/>
+									<h4>{{weatherRes.current_observation.weather}}</h4>
+								</div>
+								<div class="col-md-9">
 									<dl class="dl-horizontal">
-										<dt>Started</dt>
-										<dd>3 Feb. 2013</dd>
-										<dt>Major Stake Holder</dt>
-										<dd>HK Fine Foods Inc.</dd>
-										<dt>Last Year's Turnover</dt>
-										<dd>$1,250,375</dd>
-										<dt>Employees</dt>
-										<dd>40</dd>
-									</dl>
+											<dt>Temperature</dt>
+											<dd>{{weatherRes.current_observation.temperature_string}}</dd>
+											<dt>Feels like</dt>
+											<dd>{{weatherRes.current_observation.feelslike_string}}</dd>
+											<dt>Wind</dt>
+											<dd>{{weatherRes.current_observation.wind_mph}} mph</dd>
+											<dt>Humidity</dt>
+											<dd>{{weatherRes.current_observation.relative_humidity}}</dd>
+											<dt>UV</dt>
+											<dd>{{weatherRes.current_observation.UV}}</dd>
+										</dl>
+								</div>
 							</div>
 					</div>
 			</div>
 		</div>
 
     <div class="row">
-			<div class="col-md-4">
-					<div class="panel panel-primary">
+			<div class="col-md-4" ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday">
+					<div class="panel panel-primary" >
 							<div class="panel-heading">
-									<h3 class="panel-title">Weather weather</h3>
+									<h3 class="panel-title">{{forecast.date.pretty}}</h3>
 							</div>
 							<div class="panel-body">
-									<dl class="dl-horizontal">
-										<dt>Started</dt>
-										<dd>3 Feb. 2013</dd>
-										<dt>Major Stake Holder</dt>
-										<dd>HK Fine Foods Inc.</dd>
-										<dt>Last Year's Turnover</dt>
-										<dd>$1,250,375</dd>
-										<dt>Employees</dt>
-										<dd>40</dd>
-									</dl>
+								<img  alt= "this is an iamge" class="small-img" ng-src="https://icons.wxug.com/i/c/j/{{forecast.icon}}.gif"/>
+								<h4>{{forecast.conditions}}</h4>
+								<dl class="dl-horizontal">
+									<dt>Temperature</dt>
+									<dd>{{forecast.conditions}}</dd>
+									<dt>High</dt>
+									<dd>{{forecast.high.fahrenheit}}</dd>
+									<dt>Low</dt>
+									<dd>{{forecast.low.fahrenheit}}</dd>
+									<dt>Wind</dt>
+									<dd>{{forecast.avewind.mph}} mph</dd>
+									<dt>Humidity</dt>
+									<dd>{{forecast.avehumidity}}</dd>
+									
+								</dl>
 							</div>
 					</div>
 			</div>
