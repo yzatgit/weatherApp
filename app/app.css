@@ -1,30 +1,5 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
-
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-
 /* 
 color scheme for the whole site
 
@@ -41,8 +16,8 @@ color scheme for the whole site
   min-height: 300px;
   padding:110px 0px;
 }
-.light-bg{
-  background-color: #a1c6ea;
+.footer-bg{
+  background-color: #1c1f33;
   min-height: 200px;
   padding:100px 0px;
   margin-top:100px;
@@ -54,7 +29,7 @@ color scheme for the whole site
 }
 
 .w-margin{
-  margin-bottom:100px;
+  margin-bottom:50px;
 }
 
 /* font styles */
@@ -71,10 +46,20 @@ h2, h4, h5 {
   margin: 15px 0px;
 }
 
+h6 {
+  color:white;
+}
+
+.bold {
+  font-weight:bold;
+}
 
 /* position class */
 .right{
   text-align: right;
+}
+.center {
+  text-align: center;
 }
 
 /* select form styles */
@@ -88,21 +73,6 @@ select option {
   min-height:1.6rem;
 }
 
-/* info panel styles */
-.panel-primary{
-  border-color: #507dbc;
-}
-.panel-primary > .panel-heading{
-  background-color: #507dbc;
-  border-color:#507dbc;
-  color:#fff;
-}
-
-/* img styles */
-.big-img {
-  display: block;
-  margin: 25px auto;
-}
 
 /* new UI */
 .img-area {
@@ -147,24 +117,31 @@ select option {
 }
 
 .card {
-  margin: 5px;
+  margin: 10px 5px;
   border-radius: 5px;
   border: 1px solid #bbd1ea;
   box-shadow: 2px 2px 1px #888;
 }
 .card .icon {
   display: block;
+  padding: 10px 5px 0px 20px;
 }
 
-.card .icon h5 {
+.card .icon h4 {
   display: inline;
+  padding-left:20px;
 }
 .card .bottom-card {
-  background: linear-gradient(to bottom, #fff, #bbd1ea);
+  background: linear-gradient(to bottom, #fff, #c9d6ea);
   padding: 5px 15px 20px 15px;
 }
 
 .card .bottom-card h3 {
   text-align: center;
   min-height: 80px;
+  margin:20px 0 0 0;
+}
+
+.charts-section{
+  margin-top: 50px;
 }
