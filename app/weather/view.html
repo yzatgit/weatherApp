@@ -43,6 +43,13 @@
 					</div>
 			</div>
 		</div>
+		<div class = "row">
+			<div class="col-md-12">
+					<canvas  id="line" class="chart chart-line" chart-data="data" chart-options="options"
+					chart-labels="labels" chart-series="series" chart-click="onClick">
+					</canvas>
+			</div>
+		</div>
 
     <div class="row">
 			<div class="col-md-4" ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday">
