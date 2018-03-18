@@ -9,7 +9,6 @@ angular.module('weatherApp.service',['ngResource'])
 
     var key = '813de3f6f748408e';
     var baseUrl = 'http://api.wunderground.com/api/813de3f6f748408e/';
-    
     return $resource(baseUrl + ':path/q/:state/:city.json', //controller needs to pass in :state, :city for this api to work
             //TODO: some default values for parameters??
             {},

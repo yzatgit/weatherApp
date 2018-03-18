@@ -67,7 +67,7 @@ angular.module('weatherApp.controller', ['ngRoute','chart.js'])
           id: 'y-axis-1',
           type: 'linear',
           display: true,
-          ticks:{min:-40, max: 120}
+          ticks:{min:-20, max: 90}
         }
       ]
     }
