@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h4>Please choose a city to find out the local weather today and forecast in 10 days</h4>
+				<h4>Please choose a city to find out the local weather now and forecast in 10 days</h4>
 				<select class="form-control" ng-change = "changeLocation()" ng-model = "location">
 					<option ng-repeat="location in locations" >{{location.city}},{{location.state}}</option>
 				</select>
@@ -81,7 +81,7 @@
 			<div class="col-md-4" ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday">
 				<div class="card">
 						<div class="icon"><img  alt= "this is an iamge" class="small-img" ng-src="https://icons.wxug.com/i/c/j/{{forecast.icon}}.gif"/>
-							<h4>{{forecast.date.weekday}} | {{forecast.date.monthname}},{{forecast.date.day}} {{forecast.date.year}} </h4>
+							<h4>{{forecast.date.weekday}} | {{forecast.date.monthname}},{{forecast.date.day}}</h4>
 						</div>
 						<div class="bottom-card">
 							<h3>{{forecast.conditions}}</h3>

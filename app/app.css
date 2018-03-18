@@ -119,20 +119,25 @@ select option {
 .card {
   margin: 10px 5px;
   border-radius: 5px;
-  border: 1px solid #bbd1ea;
+  border: 1px solid #1c1f33;
   box-shadow: 2px 2px 1px #888;
 }
 .card .icon {
   display: block;
-  padding: 10px 5px 0px 20px;
+  padding: 10px 5px 10px 20px;
+  background-color: #1c1f33;
 }
 
 .card .icon h4 {
   display: inline;
   padding-left:20px;
+  color:white;
+}
+
+.card .icon img{
+  border-radius:50%;
 }
 .card .bottom-card {
-  background: linear-gradient(to bottom, #fff, #c9d6ea);
   padding: 5px 15px 20px 15px;
 }
 

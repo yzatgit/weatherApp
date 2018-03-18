@@ -21,6 +21,7 @@ angular.module('weatherApp.controller', ['ngRoute','chart.js'])
     {city: 'Seattle', state: 'WA'},
     {city: 'Las Vegas', state: 'NV'}
   ];
+  
   //initialize location 
   $scope.location = "Boston,MA";
   $scope.message="Loading...";
@@ -35,34 +36,34 @@ angular.module('weatherApp.controller', ['ngRoute','chart.js'])
 
     $scope.forecastRes.$promise
     .then(
+
+      //on success
       function(response){
         $scope.showContent=true;
         $scope.forecastJson = response.forecast; 
+
+        var weekdays = [];
+        var tempHighs = [];
+        var tempLows = [];
+        
+
         //convert forecast hash to dfferent arrays
         var dayForecastArr = $scope.forecastJson.simpleforecast.forecastday;
-        var mylabel = [];
-        var myTempHigh = [];
-        var myTempLow = [];
-        
         for(var i in dayForecastArr)
         {
           //mylabel.push(dayForecast.date.weekday);
-          mylabel.push(dayForecastArr[i].date.weekday);
-          myTempHigh.push(dayForecastArr[i].high.fahrenheit);
-          myTempLow.push(dayForecastArr[i].low.fahrenheit);
+          weekdays.push(dayForecastArr[i].date.weekday);
+          tempHighs.push(dayForecastArr[i].high.fahrenheit);
+          tempLows.push(dayForecastArr[i].low.fahrenheit);
         }
 
         // chart settings
-      $scope.labels = mylabel;
+      $scope.labels = weekdays;
       $scope.series = ['Temperature High(F)', 'Temperature Low(F)'];
       $scope.data = [
-        myTempHigh,//[65, 59, 80, 81, 56, 55, 40],
-        myTempLow //[28, 48, 40, 19, 86, 27, 90]
+        tempHighs,//[65, 59, 80, 81, 56, 55, 40],
+        tempLows //[28, 48, 40, 19, 86, 27, 90]
       ];
-
-      $scope.onClick = function (points, evt) {
-        console.log(points, evt);
-      };
 
       $scope.options = {
         scales: {
@@ -91,8 +92,10 @@ angular.module('weatherApp.controller', ['ngRoute','chart.js'])
         legend: {display: true}
       };
     },
+
+    //on error
     function(response){
-      $scope.message="Error: "+response.status + " " + response.statusText;
+      $scope.message="Error fetching weather data, status: "+ response.status + ", statustext: " + response.statusText;
     }
   )
   };
