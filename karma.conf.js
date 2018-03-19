@@ -8,8 +8,10 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      "bower_components/chart.js/dist/Chart.min.js",
+      "bower_components/angular-chart.js/dist/angular-chart.min.js",
       'components/**/*.js',
-      'view*/**/*.js'
+      'weather/**/*.js'
     ],
 
     autoWatch: true,

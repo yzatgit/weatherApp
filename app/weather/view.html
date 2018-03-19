@@ -1,60 +1,111 @@
-<p>This is the partial for view 1.</p>
-	
+<!-- select section -->
 <div class="select-bg">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h4>Please choose a city to find out the local weather</h4>
-				<select class="form-control">
-					<option ng-repeat="city in locations" ng>{{city}}</option>
+				<h4>Please choose a city to find out the local weather now and forecast in 10 days</h4>
+				<select class="form-control" ng-change = "getLocationDetail()" ng-model = "location">
+					<option ng-repeat="location in locations" >{{location.city}},{{location.state}}</option>
 				</select>
 			</div>
 		</div>
 	</div>  
 </div>
 
-<div class="container">
-	<div class="row">
-			<div class="col-md-12">
-					<div class="panel panel-primary">
-							<div class="panel-heading">
-									<h3 class="panel-title">Weather Today</h3>
+<!-- loading message -->
+<div ng-if="!showContent">
+  <h1 class="center">{{message}}</h1>
+</div>
+<div ng-if="showContent">
+<!-- after the returned promise is resolved .show content to the user -->
+	<!-- weather today and charts -->
+	<div class="container w-margin">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="img-area"><img  alt= "this is an iamge" class="big-img" ng-src="https://icons.wxug.com/i/c/j/{{weatherRes.current_observation.icon}}.gif"/>
+					<h2 class="right">{{weatherRes.current_observation.weather}}</h2>
+				</div>
+				<div class="detail-area"><span>{{weatherRes.current_observation.display_location.full}} now</span>
+					<div class="info">
+						<div class="title">Temperature</div>
+						<p>{{weatherRes.current_observation.temperature_string}}</p>
+					</div>
+					<div class="info">
+						<div class="title">Feels Like</div>
+						<p>{{weatherRes.current_observation.feelslike_string}}</p>
+					</div>
+					<div class="info">
+						<div class="title">Humidity</div>
+						<p>{{weatherRes.current_observation.relative_humidity}}</p>
+					</div>
+					<div class="info">
+						<div class="title">Wind</div>
+						<p>{{weatherRes.current_observation.wind_mph}} mph</p>
+					</div>
+					<div class="info">
+						<div class="title">UV</div>
+						<p>{{weatherRes.current_observation.UV}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7 col-md-offset-1">
+				<div class="charts-section">
+					<h4>Temperature Forecast in 10 Days</h4>
+					<canvas  id="line" class="chart chart-line" chart-data="data" chart-options="options"
+					chart-labels="labels" chart-series="series" chart-click="onClick">
+					</canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container w-margin">
+		<div class="table-responsive">
+			<table class="table" >
+				<thead>
+					<tr>
+						<th ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday"><h4>{{forecast.date.weekday}}</h4></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday"><img  alt= "this is an iamge" class="small-img" ng-src="https://icons.wxug.com/i/c/f/{{forecast.icon}}.gif"/></td>
+					</tr>
+					<tr>
+						<td ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday"><h5 class="bold">{{forecast.conditions}}</h5></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 10 day forecast details -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4" ng-repeat="forecast in forecastRes.forecast.simpleforecast.forecastday">
+				<div class="card">
+						<div class="icon"><img  alt= "this is an iamge" class="small-img" ng-src="https://icons.wxug.com/i/c/j/{{forecast.icon}}.gif"/>
+							<h4>{{forecast.date.weekday}} | {{forecast.date.monthname}},{{forecast.date.day}}</h4>
+						</div>
+						<div class="bottom-card">
+							<h3>{{forecast.conditions}}</h3>
+							<div class="info">
+								<div class="title">High</div>
+								<p>{{forecast.high.fahrenheit}} F </p>
 							</div>
-							<div class="panel-body">
-									<dl class="dl-horizontal">
-										<dt>Started</dt>
-										<dd>3 Feb. 2013</dd>
-										<dt>Major Stake Holder</dt>
-										<dd>HK Fine Foods Inc.</dd>
-										<dt>Last Year's Turnover</dt>
-										<dd>$1,250,375</dd>
-										<dt>Employees</dt>
-										<dd>40</dd>
-									</dl>
+							<div class="info">
+								<div class="title">Low</div>
+								<p>{{forecast.low.fahrenheit}} F </p>
 							</div>
+							<div class="info">
+								<div class="title">Humidity</div>
+								<p>{{forecast.avehumidity}} %</p>
+							</div>
+							<div class="info">
+								<div class="title">wind</div>
+								<p>{{forecast.avewind.mph}} mph</p>
+							</div>
+						</div>
 					</div>
 			</div>
 		</div>
-
-    <div class="row">
-			<div class="col-md-4">
-					<div class="panel panel-primary">
-							<div class="panel-heading">
-									<h3 class="panel-title">Weather weather</h3>
-							</div>
-							<div class="panel-body">
-									<dl class="dl-horizontal">
-										<dt>Started</dt>
-										<dd>3 Feb. 2013</dd>
-										<dt>Major Stake Holder</dt>
-										<dd>HK Fine Foods Inc.</dd>
-										<dt>Last Year's Turnover</dt>
-										<dd>$1,250,375</dd>
-										<dt>Employees</dt>
-										<dd>40</dd>
-									</dl>
-							</div>
-					</div>
-			</div>
-    </div>
-  </div>
+	</div>
+</div>
