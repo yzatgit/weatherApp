@@ -2,26 +2,8 @@
 
 angular.module('weatherApp.controller', ['ngRoute','chart.js'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/weather', {
-    templateUrl: 'weather/view.html',
-    controller: 'weatherCtrl'
-  });
-}])
-
-
-.controller('weatherCtrl',['$scope','weatherData', function($scope, weatherData){
-  //TODO: locations collection move to service 
-  $scope.locations = [
-    {city: 'Boston', state:'MA'},
-    {city: 'New York', state: 'NY'},
-    {city: 'Nashua', state:'NH'},
-    {city: 'Chicago', state:'IL'},
-    {city: 'Raleigh', state: 'NC'},
-    {city: 'Seattle', state: 'WA'},
-    {city: 'Las Vegas', state: 'NV'}
-  ];
-  
+.controller('weatherCtrl',['$scope','weatherData', 'locationData',function($scope, weatherData, locationData){
+  $scope.locations = locationData;
   //initialize location 
   $scope.location = "Boston,MA";
   $scope.message="Loading...";
@@ -39,13 +21,13 @@ angular.module('weatherApp.controller', ['ngRoute','chart.js'])
 
       //on success
       function(response){
+        console.log("success");
         $scope.showContent=true;
         $scope.forecastJson = response.forecast; 
 
         var weekdays = [];
         var tempHighs = [];
         var tempLows = [];
-        
 
         //convert forecast hash to dfferent arrays
         var dayForecastArr = $scope.forecastJson.simpleforecast.forecastday;
@@ -58,52 +40,51 @@ angular.module('weatherApp.controller', ['ngRoute','chart.js'])
         }
 
         // chart settings
-      $scope.labels = weekdays;
-      $scope.series = ['Temperature High(F)', 'Temperature Low(F)'];
-      $scope.data = [
-        tempHighs,//[65, 59, 80, 81, 56, 55, 40],
-        tempLows //[28, 48, 40, 19, 86, 27, 90]
-      ];
+        $scope.labels = weekdays;
+        $scope.series = ['Temperature High(F)', 'Temperature Low(F)'];
+        $scope.data = [tempHighs, tempLows ];
 
-      $scope.options = {
-        scales: {
-          yAxes: [
-            {
-              id: 'y-axis-1',
-              type: 'linear',
-              display: true,
-              ticks:{min:-20, max: 80},
-              gridLines:{display:false}
-            }
-          ],
-          xAxes: [
-            {
-              gridlines: {
-                display:false
+        $scope.options = {
+          scales: {
+            yAxes: [
+              {
+                id: 'y-axis-1',
+                type: 'linear',
+                display: true,
+                ticks:{min:-20, max: 80},
+                gridLines:{display:false}
               }
+            ],
+            xAxes: [
+              {
+                gridlines: {
+                  display:false
+                }
+              }
+            ]
+          },
+          elements: {
+            line: {
+              fill:false
             }
-          ]
-        },
-        elements: {
-          line: {
-            fill:false
-          }
-        },
-        legend: {display: true}
-      };
-    },
+          },
+          legend: {display: true}
+        };
+      },
 
-    //on error
-    function(response){
-      $scope.message="Error fetching weather data, status: "+ response.status + ", statustext: " + response.statusText;
-    }
-  )
+      //on error
+      function(response){
+        $scope.message="Error fetching weather data, status: "+ response.status + ", statustext: " + response.statusText;
+        console.log("error");
+      }
+    )
   };
   
-  $scope.changeLocation = function(){
-    $scope.getLocationDetail();
-  };
   // get default location data
   $scope.getLocationDetail();
+
+
+
+  
 
 }])

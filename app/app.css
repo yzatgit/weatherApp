@@ -117,7 +117,8 @@ select option {
 }
 
 .card {
-  margin: 10px 5px;
+  margin: 10px auto;
+  max-width: 380px;
   border-radius: 5px;
   border: 1px solid #1c1f33;
   box-shadow: 2px 2px 1px #888;

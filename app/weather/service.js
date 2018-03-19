@@ -21,4 +21,19 @@ angular.module('weatherApp.service',['ngResource'])
 							{ method:'GET', params:{ path:'forecast10day' }, isArray: false}
             }
         	);
-  }]);
+  }])
+
+  .factory('locationData', function(){
+    // locations for user to select
+    var locations = [
+      {city: 'Boston', state:'MA'},
+      {city: 'Southborough', state:'MA'},
+      {city: 'New York', state: 'NY'},
+      {city: 'Nashua', state:'NH'},
+      {city: 'Chicago', state:'IL'},
+      {city: 'Raleigh', state: 'NC'},
+      {city: 'Seattle', state: 'WA'},
+      {city: 'Las Vegas', state: 'NV'}
+    ];
+    return locations;
+  })

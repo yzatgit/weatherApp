@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h4>Please choose a city to find out the local weather now and forecast in 10 days</h4>
-				<select class="form-control" ng-change = "changeLocation()" ng-model = "location">
+				<select class="form-control" ng-change = "getLocationDetail()" ng-model = "location">
 					<option ng-repeat="location in locations" >{{location.city}},{{location.state}}</option>
 				</select>
 			</div>
@@ -59,6 +59,7 @@
 		</div>
 	</div>
 	<div class="container w-margin">
+		<div class="table-responsive">
 			<table class="table" >
 				<thead>
 					<tr>
@@ -74,6 +75,7 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
 	</div>
 	<!-- 10 day forecast details -->
 	<div class="container">
